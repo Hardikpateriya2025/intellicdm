@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy import select
+from sqlalchemy import or_, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
@@ -32,6 +32,7 @@ def create_patient(payload: PatientCreate, db: Session = Depends(get_db)):
 
 @router.get("", response_model=list[PatientRead])
 def list_patients(
+    q: str | None = Query(default=None, min_length=1, max_length=100),
     offset: int = Query(default=0, ge=0),
     limit: int = Query(default=20, ge=1, le=100),
     db: Session = Depends(get_db),
@@ -42,6 +43,18 @@ def list_patients(
         .offset(offset)
         .limit(limit)
     )
+    if q and q.strip():
+        search = q.strip()
+        statement = statement.where(
+            or_(
+                Patient.first_name.icontains(search, autoescape=True),
+                Patient.last_name.icontains(search, autoescape=True),
+                Patient.medical_record_number.icontains(search, autoescape=True),
+                (Patient.first_name + " " + Patient.last_name).icontains(
+                    search, autoescape=True
+                ),
+            )
+        )
     return db.scalars(statement).all()
 
 @router.get("/{patient_id}", response_model=PatientRead)
