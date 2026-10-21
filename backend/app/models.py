@@ -44,3 +44,41 @@ class Encounter(Base):
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )
+
+
+from decimal import Decimal
+from sqlalchemy import CheckConstraint, Numeric
+
+class LabResult(Base):
+    __tablename__ = "lab_results"
+    __table_args__ = (
+        CheckConstraint(
+            "reference_low IS NULL OR reference_high IS NULL "
+            "OR reference_low <= reference_high",
+            name="ck_lab_reference_range",
+        ),
+    )
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        primary_key=True, default=uuid.uuid4
+    )
+    encounter_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("encounters.id", ondelete="RESTRICT"),
+        nullable=False,
+        index=True,
+    )
+    test_name: Mapped[str] = mapped_column(String(200), nullable=False)
+    value: Mapped[Decimal] = mapped_column(Numeric, nullable=False)
+    unit: Mapped[str] = mapped_column(String(50), nullable=False)
+    reference_low: Mapped[Decimal | None] = mapped_column(
+        Numeric, nullable=True
+    )
+    reference_high: Mapped[Decimal | None] = mapped_column(
+        Numeric, nullable=True
+    )
+    collected_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, index=True
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
