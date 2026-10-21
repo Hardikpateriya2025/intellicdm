@@ -3,6 +3,7 @@ from decimal import Decimal
 from uuid import UUID
 
 from pydantic import (
+    computed_field,
     AwareDatetime,
     BaseModel,
     ConfigDict,
@@ -54,3 +55,14 @@ class LabResultRead(BaseModel):
     reference_high: Decimal | None
     collected_at: datetime
     created_at: datetime
+
+    @computed_field
+    @property
+    def reference_flag(self) -> str:
+        if self.reference_low is not None and self.value < self.reference_low:
+            return "below_range"
+        if self.reference_high is not None and self.value > self.reference_high:
+            return "above_range"
+        if self.reference_low is not None and self.reference_high is not None:
+            return "within_range"
+        return "insufficient_reference"

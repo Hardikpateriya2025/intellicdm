@@ -63,3 +63,34 @@ def get_patient(patient_id: UUID, db: Session = Depends(get_db)):
     if patient is None:
         raise HTTPException(status_code=404, detail="Patient not found")
     return patient
+
+
+from app.lab_schemas import LabResultRead
+from app.models import Encounter, LabResult
+
+@router.get("/{patient_id}/labs", response_model=list[LabResultRead])
+def patient_lab_history(
+    patient_id: UUID,
+    test_name: str | None = Query(default=None, min_length=1, max_length=200),
+    offset: int = Query(default=0, ge=0),
+    limit: int = Query(default=20, ge=1, le=100),
+    db: Session = Depends(get_db),
+):
+    if db.get(Patient, patient_id) is None:
+        raise HTTPException(status_code=404, detail="Patient not found")
+
+    statement = (
+        select(LabResult)
+        .join(Encounter, LabResult.encounter_id == Encounter.id)
+        .where(Encounter.patient_id == patient_id)
+        .order_by(LabResult.collected_at.desc(), LabResult.id)
+        .offset(offset)
+        .limit(limit)
+    )
+
+    if test_name is not None:
+        statement = statement.where(
+            LabResult.test_name == test_name.strip()
+        )
+
+    return db.scalars(statement).all()
