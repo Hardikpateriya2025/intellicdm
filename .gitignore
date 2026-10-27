@@ -7,3 +7,65 @@ __pycache__/
 .DS_Store
 node_modules/
 dist/
+
+# Local credentials
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+
+# Dependencies and caches
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.DS_Store
+*.tsbuildinfo
+
+# Build output
+dist/
+build/
+
+# Local code backups and checkpoints
+checkpoints/
+*.before_*
+*.backup*
+*.bak
+*.orig
+
+# Generated datasets, model artifacts and exports
+backend/ml/data/
+backend/ml/artifacts/
+exports/
+uploads/
+*.csv
+*.parquet
+*.joblib
+*.pkl
+*.pt
+*.pth
+*.onnx
+
+# Database files and archives
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# Downloaded tools
+tools/
+
+# Runtime logs
+*.log
+
+# Additional local backup filenames
+*.before-*

@@ -1,0 +1,197 @@
+
+.pw-polished {
+  border-radius: 22px;
+  overflow: hidden;
+}
+.pw-polished .pw-header {
+  background: linear-gradient(115deg,#edf6f3,#f5f8fa);
+  padding: 28px;
+  border-bottom: 1px solid #dbe8e8;
+  gap: 20px;
+}
+.pw-polished .pw-header h2 {
+  color: #183e4b;
+  font-size: clamp(26px,3vw,38px);
+  letter-spacing: -1px;
+  margin: 10px 0 16px;
+  overflow-wrap: anywhere;
+}
+.pw-identity-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+.pw-identity-tags > span {
+  background: #fff;
+  border: 1px solid #d7e5e5;
+  border-radius: 9px;
+  padding: 8px 11px;
+  font-size: 11px;
+  color: #627983;
+}
+.pw-identity-tags strong {
+  color: #254b57;
+  margin-left: 6px;
+}
+.pw-patient-id {
+  margin-top: 13px;
+  color: #617e88;
+  font-size: 10px;
+}
+.pw-patient-id summary { cursor: pointer; }
+.pw-patient-id code {
+  display: block;
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
+.pw-context-strip {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 22px;
+  padding: 24px 28px;
+  background: #fff;
+  border-bottom: 1px solid #e4ecef;
+}
+.pw-context-strip small {
+  font-size: 9px;
+  letter-spacing: 1.3px;
+  color: #728a93;
+  font-weight: 700;
+}
+.pw-context-strip strong {
+  display: block;
+  font-size: 15px;
+  color: #244a57;
+  margin-top: 9px;
+}
+.pw-context-strip p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #627b86;
+  margin: 8px 0 0;
+}
+.pw-polished .pw-main-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px 24px;
+  background: #f6f9fa;
+  border-bottom: 1px solid #e1e9ed;
+}
+.pw-polished .pw-main-tabs button {
+  padding: 12px 18px;
+  border: 1px solid #d6e3e7;
+  border-radius: 10px;
+  background: white;
+  color: #506d79;
+  font-weight: 700;
+  cursor: pointer;
+}
+.pw-polished .pw-main-tabs button[aria-pressed="true"] {
+  color: #fff;
+  background: #234f5b;
+  border-color: #234f5b;
+}
+.pw-polished .pw-timeline {
+  min-width: 0;
+}
+.pw-polished .pw-visit {
+  border-radius: 12px;
+  margin-bottom: 10px;
+  text-align: left;
+  border: 1px solid #dce7eb;
+}
+.pw-polished .pw-visit.pw-selected {
+  background: #edf7f2;
+  border-color: #80b6a5;
+  box-shadow: inset 3px 0 #328771;
+}
+.pw-polished .pw-visit strong {
+  color: #244a57;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.pw-polished .pw-record-content { min-width: 0; }
+.pw-selection-summary {
+  border: 1px solid #d7e6e5;
+  background: #f4f9f7;
+  border-radius: 15px;
+  padding: 22px;
+  margin-bottom: 22px;
+}
+.pw-selection-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+}
+.pw-selection-title h3 {
+  color: #254a56;
+  font-size: 19px;
+  line-height: 1.5;
+  margin: 9px 0;
+  overflow-wrap: anywhere;
+}
+.pw-selection-title p {
+  color: #627d87;
+  font-size: 11px;
+}
+.pw-selection-position {
+  flex-shrink: 0;
+  text-align: center;
+  color: #376b60;
+  font-size: 20px;
+  font-weight: 700;
+  background: #e3f0e9;
+  border-radius: 11px;
+  padding: 12px;
+}
+.pw-selection-position small {
+  display: block;
+  font-size: 9px;
+  margin-top: 5px;
+  font-weight: 400;
+}
+.pw-selection-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.pw-selection-hint {
+  font-size: 10px;
+  line-height: 1.8;
+  color: #627e85;
+  margin: 16px 0 0;
+}
+.pw-generation-state {
+  margin: 18px 0;
+  padding: 18px;
+  background: #edf5f4;
+  border: 1px solid #d3e5df;
+  border-radius: 12px;
+  color: #3b635f;
+}
+.pw-generation-state p { font-size: 12px; line-height: 1.8; }
+.pw-generation-state small {
+  display: block;
+  font-size: 10px;
+  line-height: 1.7;
+  margin-top: 10px;
+}
+.pw-polished button:focus-visible,
+.pw-polished summary:focus-visible {
+  outline: 3px solid #278574;
+  outline-offset: 3px;
+}
+@media(max-width:1000px) {
+  .pw-polished .pw-record-layout { grid-template-columns: 1fr; }
+}
+@media(max-width:650px) {
+  .pw-polished .pw-header { padding: 20px; flex-direction: column; align-items: flex-start; }
+  .pw-context-strip { grid-template-columns: 1fr; padding: 20px; gap: 18px; }
+  .pw-polished .pw-main-tabs { padding: 12px; }
+  .pw-polished .pw-main-tabs button { flex: 1 1 100%; }
+  .pw-selection-summary { padding: 16px; }
+  .pw-selection-actions .button { width: 100%; }
+}

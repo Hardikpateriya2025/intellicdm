@@ -19,7 +19,11 @@ def create_lab_result(
     payload: LabResultCreate,
     db: Session = Depends(get_db),
 ):
-    encounter = db.get(Encounter, encounter_id)
+    encounter = db.scalar(
+        select(Encounter)
+        .where(Encounter.id == encounter_id)
+        .with_for_update()
+    )
     if encounter is None:
         raise HTTPException(status_code=404, detail="Encounter not found")
 
