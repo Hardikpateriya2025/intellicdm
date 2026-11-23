@@ -1,0 +1,55 @@
+{
+  "features": [
+    "glucose",
+    "creatinine",
+    "urea_nitrogen",
+    "sodium",
+    "potassium",
+    "chloride",
+    "calcium",
+    "total_co2"
+  ],
+  "units": {
+    "glucose": "mg/dL",
+    "creatinine": "mg/dL",
+    "urea_nitrogen": "mg/dL",
+    "sodium": "mmol/L",
+    "potassium": "mmol/L",
+    "chloride": "mmol/L",
+    "calcium": "mg/dL",
+    "total_co2": "mmol/L"
+  },
+  "codes": {
+    "glucose": "2339-0",
+    "creatinine": "38483-4",
+    "urea_nitrogen": "6299-2",
+    "sodium": "2947-0",
+    "potassium": "6298-4",
+    "chloride": "2069-3",
+    "calcium": "49765-1",
+    "total_co2": "20565-8"
+  },
+  "grouping": [
+    "PATIENT",
+    "ENCOUNTER",
+    "DATE"
+  ],
+  "split_seed": 42,
+  "scope": "Synthetic experiment; thresholds are not clinical cutoffs",
+  "architecture": [
+    8,
+    64,
+    32,
+    4,
+    32,
+    64,
+    8
+  ],
+  "hidden_activation": "ReLU",
+  "output_activation": "linear",
+  "autoencoder_score": "mean_squared_error_in_standardized_space",
+  "autoencoder_threshold": 0.4205324947834015,
+  "isolation_forest_score": "negative_score_samples",
+  "isolation_forest_threshold": 0.5720768070358836,
+  "threshold_method": "95th percentile of validation scores"
+}

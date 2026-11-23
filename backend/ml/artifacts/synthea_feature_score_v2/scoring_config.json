@@ -1,0 +1,27 @@
+{
+  "version": "synthea_feature_score_v2",
+  "base_model": "synthea_autoencoder_v1",
+  "features": [
+    "glucose",
+    "creatinine",
+    "urea_nitrogen",
+    "sodium",
+    "potassium",
+    "chloride",
+    "calcium",
+    "total_co2"
+  ],
+  "feature_error_scales": [
+    0.5798231363296509,
+    0.6245105862617493,
+    0.046664297580718994,
+    0.9921705722808838,
+    0.7430706024169922,
+    0.37633177638053894,
+    0.8352712392807007,
+    0.21486465632915497
+  ],
+  "threshold": 3.083630084991455,
+  "score": "max(per_feature_squared_error / feature_error_scale)",
+  "calibration": "Feature scales and threshold estimated from original validation panels. No known-normal labels or probability calibration."
+}

@@ -1,0 +1,10 @@
+{
+  "v1_average": {
+    "panel_weighted": 0.04164267894837843,
+    "equal_patient_weighted": 0.014888039656450514
+  },
+  "v2_feature_max": {
+    "panel_weighted": 0.04816733832277874,
+    "equal_patient_weighted": 0.016771015352369727
+  }
+}
